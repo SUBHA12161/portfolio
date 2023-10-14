@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
@@ -13,7 +14,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 // Connect to your MongoDB database
-mongoose.connect('mongodb://localhost/your-database-name', {
+mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
