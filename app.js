@@ -10,6 +10,10 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Set the views directory
+app.set('views', path.join(__dirname, 'views'));
+
+// Set the view engine
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
