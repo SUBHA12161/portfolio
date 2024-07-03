@@ -14,9 +14,11 @@ app.use(bodyParser.json());
 // Set the views directory
 app.set('views', path.join(__dirname, 'views'));
 
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Set the view engine
 app.set('view engine', 'ejs');
-app.use(express.static('public'));
 
 // Connect to your MongoDB database
 mongoose.connect(process.env.DATABASE_URL, {
