@@ -5,6 +5,7 @@ const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 const contactUsController = require('./controller/contact-us-controller');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 // Set up body parser middleware
 app.use(bodyParser.urlencoded({ extended: true }));
