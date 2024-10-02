@@ -538,6 +538,18 @@ section {
   transition: 0.9s;
   background-color: #5fd3f3;
 }
+.Next-class {
+  width: 1px;
+  height: 10px;
+  transition: 0.9s;
+  background-color: #1f373e;
+}
+.pgress-class {
+  width: 1px;
+  height: 10px;
+  transition: 0.9s;
+  background-color: #a13b99;
+}
 
 
 /*--------------------------------------------------------------
