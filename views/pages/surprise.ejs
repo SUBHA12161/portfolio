@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise for You!</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f0f8ff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .container {
+        text-align: center;
+        background-color: #fff;
+        padding: 20px;
+        padding-top: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 600px;
+        position: relative;
+        z-index: 1;
+    }
+
+    h1 {
+        color: #ff69b4;
+        animation: fadeIn 2s;
+    }
+
+    p {
+        font-size: 1.2em;
+        color: #333;
+        animation: fadeIn 2s;
+    }
+
+    button {
+        background-color: #ff69b4;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #ff1493;
+    }
+
+    .heart {
+        position: absolute;
+        font-size: 2em;
+        color: #ff69b4;
+        animation: heartBeat 1s infinite;
+    }
+
+    .challenges {
+        margin-top: 20px;
+    }
+
+    .challenge {
+        margin-bottom: 20px;
+        display: none;
+    }
+
+    .challenge.active {
+        display: block;
+    }
+
+    .challenge i {
+        font-size: 2em;
+        color: #ff69b4;
+        margin-bottom: 10px;
+    }
+
+    .challenge p {
+        font-size: 1em;
+        color: #333;
+    }
+
+    input[type="text"] {
+        width: 80%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    audio {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes heartBeat {
+
+        0%,
+        100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.2);
+        }
+    }
+
+    @keyframes fadeOut {
+
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            width: 95%;
+            padding: 15px;
+        }
+
+        h1 {
+            font-size: 1.5em;
+        }
+
+        p {
+            font-size: 1em;
+        }
+
+        button {
+            font-size: 0.9em;
+        }
+
+        .heart {
+            font-size: 1.5em;
+        }
+
+        .challenge i {
+            font-size: 1.5em;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .container {
+            width: 98%;
+            padding: 10px;
+        }
+
+        h1 {
+            font-size: 1.2em;
+        }
+
+        p {
+            font-size: 0.9em;
+        }
+
+        button {
+            font-size: 0.8em;
+        }
+
+        .heart {
+            font-size: 1.2em;
+        }
+
+        .challenge i {
+            font-size: 1.2em;
+        }
+    }
+
+    #heart-beat {
+        display: none;
+        width: 300px;
+        height: 300px;
+        background-color: red;
+        margin: 200px auto;
+        position: relative;
+        transform: rotate(45deg);
+        -webkit-animation: example 0.3s linear 1s infinite alternate;
+        z-index: 1;
+    }
+
+    #heart-beat:after {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        position: absolute;
+        content: "";
+        top: 0px;
+        left: -150px;
+        background-color: red;
+        box-shadow: 0 0 40px rgba(213, 9, 60, 1);
+        -webkit-animation: examp 0.5s linear 1s infinite alternate;
+        z-index: 2;
+    }
+
+    #heart-beat:before {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        position: absolute;
+        content: "";
+        top: -150px;
+        right: 0px;
+        background-color: red;
+        box-shadow: 0 0 40px rgba(213, 9, 60, 1);
+        -webkit-animation: examp 0.5s linear 1s infinite alternate;
+        z-index: -1;
+    }
+
+    @-webkit-keyframes example {
+        0% {
+            -webkit-transform: scale(1, 1) rotate(45deg);
+            box-shadow: 0 0 40px rgba(213, 9, 60, 1);
+        }
+
+        100% {
+            -webkit-transform: scale(1.1, 1.1) rotate(45deg);
+            box-shadow: 0 0 40px rgba(213, 9, 60, .6);
+        }
+    }
+
+    @-webkit-keyframes examp {
+        0% {
+            box-shadow: 0 0 40px rgba(213, 9, 60, 1);
+        }
+
+        100% {
+            box-shadow: 0 0 40px rgba(213, 9, 60, .6);
+        }
+    }
+</style>
+
+<body>
+    <div class="container" id="container">
+        <h1>Happy belated Anniversary!</h1>
+        <p>Dear Anjali (Pechi),</p>
+        <p>I wanted to create something special for you to show how much you mean to me. This website is a small token
+            of my love and appreciation for you. Thank you for being an amazing part of my life.</p>
+        <p>With all my love,</p>
+        <p>Chinu</p>
+
+        <div class="challenges">
+            <h2>Challenges for You!</h2>
+
+            <div class="challenge active" id="challenge1">
+                <i class="fas fa-music"></i>
+                <p>Listen to our favorite song.</p>
+                <audio controls>
+                    <source src="/favorite-song.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <button onclick="nextChallenge(2)">Listened!</button>
+            </div>
+            <div class="challenge" id="challenge2">
+                <i class="fas fa-heart"></i>
+                <p>What is the first day we met?</p>
+                <input type="text" id="loveSymbolAnswer" placeholder="Example: 10 march">
+                <button onclick="checkLoveSymbol()">Submit</button>
+                <p id="loveSymbolResult"></p>
+            </div>
+            <div class="challenge" id="challenge3">
+                <i class="fas fa-heart"></i>
+                <p>Complete the phrase: "I Love You _______."</p>
+                <input type="text" id="lovePhraseAnswer" placeholder="Your answer">
+                <button onclick="checkLovePhrase()">Submit</button>
+                <p id="lovePhraseResult"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="heart-beat"></div>
+
+    <script>
+        window.onload = function () {
+            const numberOfHearts = 100;
+            for (let i = 0; i < numberOfHearts; i++) {
+                const heart = document.createElement('i');
+                heart.className = 'fas fa-heart heart';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.left = Math.random() * 100 + 'vw';
+                document.body.appendChild(heart);
+            }
+        };
+
+        function nextChallenge(challengeNumber) {
+            document.getElementById(`challenge${challengeNumber - 1}`).classList.remove('active');
+            document.getElementById(`challenge${challengeNumber}`).classList.add('active');
+        }
+
+        function checkLoveSymbol() {
+            const answer = document.getElementById('loveSymbolAnswer').value.toLowerCase();
+            const result = document.getElementById('loveSymbolResult');
+            if (answer === '23 april') {
+                result.textContent = 'Correct! You are amazing!';
+                result.style.color = 'green';
+                nextChallenge(3);
+            } else {
+                result.textContent = 'Try again!';
+                result.style.color = 'red';
+            }
+        }
+
+        function checkLovePhrase() {
+            const answer = document.getElementById('lovePhraseAnswer').value.toLowerCase();
+            const result = document.getElementById('lovePhraseResult');
+            if (answer === '3000') {
+                result.textContent = 'Correct! You are amazing!';
+                result.style.color = 'green';
+                alert('Congratulations! You have completed all the challenges!');
+                document.getElementById('heart-beat').style.display = 'block';
+                document.getElementById('container').style.display = 'none';
+            } else {
+                result.textContent = 'Try again!';
+                result.style.color = 'red';
+            }
+        }
+    </script>
+</body>
+
+</html>

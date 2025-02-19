@@ -37,6 +37,10 @@ app.get('/', (req, res) => {
   res.render('pages/home'); // Make sure 'views/pages/home.ejs' exists
 });
 
+app.get('/surprise', (req, res) => {
+  res.render('pages/surprise');
+});
+
 app.get('/success', (req, res) => {
   res.render('pages/success'); // Make sure 'views/pages/success.ejs' exists
 });
